@@ -1,21 +1,24 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Eloquent;
 
+use App\Models\Equipment;
+use App\Repositories\Contracts\EquipmentRepositoryInterface;
+use Illuminate\Support\Collection;
 use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
-//use Your Model
 
-/**
- * Class EquipmentRepository.
- */
-class EquipmentRepository extends BaseRepository
+class EquipmentRepository extends BaseRepository implements EquipmentRepositoryInterface
 {
-    /**
-     * @return string
-     *  Return the model
-     */
     public function model()
     {
-        //return YourModel::class;
+        return Equipment::class;
+    }
+
+    public function list(array $data): Collection
+    {
+        return Equipment::query()
+            ->when(isset($data['id']), fn ($q) => $q->where('id', $data['id']))
+            ->when(isset($data['name']), fn ($q) => $q->where('name', 'like', '%'.$data['name'].'%'))
+            ->get();
     }
 }
