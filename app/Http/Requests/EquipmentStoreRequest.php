@@ -4,11 +4,10 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EquipmentIndexRequest extends FormRequest {
+class EquipmentStoreRequest extends FormRequest {
     public function rules(): array {
         return [
-            'id' => ['integer', 'sometimes'],
-            'name' => ['string', 'sometimes', 'max:75']
+            'name' => ['string', 'required', 'max:75'],
         ];
     }
 

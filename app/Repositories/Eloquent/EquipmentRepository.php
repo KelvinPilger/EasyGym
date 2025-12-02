@@ -21,4 +21,14 @@ class EquipmentRepository extends BaseRepository implements EquipmentRepositoryI
             ->when(isset($data['name']), fn ($q) => $q->where('name', 'like', '%'.$data['name'].'%'))
             ->get();
     }
+
+    public function store(array $data): Equipment {
+        return Equipment::create($data);
+    }
+
+    public function update(array $data): Equipment {
+        $equipment = Equipment::findOrFail($data['id']);
+        $equipment->update($data);
+        return $equipment;
+    }
 }
