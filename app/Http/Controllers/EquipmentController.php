@@ -40,7 +40,7 @@ class EquipmentController extends Controller
 
         return new EquipmentResource($data);
     }
-	
+
 	public function delete(EquipmentDeleteRequest $request)
 	{
 		try {
@@ -59,7 +59,7 @@ class EquipmentController extends Controller
 		} catch (Exception $e) {
 			return response()->json([
 				'code' => Response::HTTP_INTERNAL_SERVER_ERROR,
-				'message' => 'Erro interno, não foi possível excluir o equipamento',
+				'message' => 'Erro interno, não foi possível excluir o equipamento.',
 				'exception' => $e->getMessage()
 			]);
 		}
