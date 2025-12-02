@@ -6,8 +6,14 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class EquipmentStoreRequest extends FormRequest {
-	public function validationData(): array
+class EquipmentDeleteRequest extends FormRequest
+{
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    public function validationData(): array
     {
         $data = array_merge($this->all(), [
             'id' => $this->route('id'),
@@ -15,27 +21,24 @@ class EquipmentStoreRequest extends FormRequest {
 
         return $data;
     }
-	
-	public function messages(): array
+
+    public function rules(): array
     {
         return [
-			'name.string' => 'O nome do equipamento deve ser do tipo string.',
-			'name.required' => 'O nome do equipamento deve ser informado.',
-			'name.max' => 'O nome do equipamento deve ter no máximo 75 caracteres.'
-        ];
-    }
-	
-    public function rules(): array {
-        return [
-            'name' => ['string', 'required', 'max:75'],
+            'id' => ['required', 'integer', 'exists:equipment,id'],
         ];
     }
 
-    public function authorize(): bool {
-        return true;
+    public function messages(): array
+    {
+        return [
+            'id.required' => 'O ID do equipamento deve ser informado.',
+            'id.integer'  => 'O ID do equipamento deve ser um valor inteiro.',
+            'id.exists'   => 'O equipamento informado não existe!.',
+        ];
     }
-	
-	protected function failedValidation(Validator $validator)
+
+    protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(
             response()->json([

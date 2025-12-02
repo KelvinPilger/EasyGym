@@ -7,4 +7,5 @@ use App\Models\Equipment;
 
 Route::get('/equipment', [EquipmentController::class, 'index']);
 Route::post('/equipment', [EquipmentController::class, 'store']);
-Route::put('/equipment', [EquipmentController::class, 'update']);
+Route::put('/equipment/{id}', [EquipmentController::class, 'update']);
+Route::delete('/equipment/{id}', [EquipmentController::class, 'delete']);

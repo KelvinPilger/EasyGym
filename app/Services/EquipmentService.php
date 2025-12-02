@@ -5,6 +5,8 @@ namespace App\Services;
 use App\Repositories\Contracts\EquipmentRepositoryInterface;
 use App\Models\Equipment;
 use Illuminate\Support\Collection;
+use Throwable;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 /**
  * Class EquipmentService.
  */
@@ -25,4 +27,13 @@ class EquipmentService
     public function update(array $data): Equipment {
         return $this->repository->update($data);
     }
+	
+	public function delete(array $data): bool {
+		try {
+			$id = (int) $data['id'];
+			return $this->repository->deleteById($id);
+		} catch(ModelNotFoundException $e) {
+			throw $e;
+		}
+	}
 }

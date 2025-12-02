@@ -19,6 +19,7 @@ class EquipmentRepository extends BaseRepository implements EquipmentRepositoryI
         return Equipment::query()
             ->when(isset($data['id']), fn ($q) => $q->where('id', $data['id']))
             ->when(isset($data['name']), fn ($q) => $q->where('name', 'like', '%'.$data['name'].'%'))
+			->orderBy('id')
             ->get();
     }
 
@@ -31,4 +32,10 @@ class EquipmentRepository extends BaseRepository implements EquipmentRepositoryI
         $equipment->update($data);
         return $equipment;
     }
+	
+	public function deleteById($id): bool {
+		$equipment = Equipment::findOrFail($id);
+		return (bool) $equipment->delete();
+	}
+	
 }
