@@ -6,6 +6,8 @@ use App\Repositories\Eloquent\EquipmentRepository;
 use App\Repositories\Contracts\EquipmentRepositoryInterface;
 use App\Repositories\Eloquent\MuscleGroupRepository;
 use App\Repositories\Contracts\MuscleGroupRepositoryInterface;
+use App\Repositories\Eloquent\UserRepository;
+use App\Repositories\Contracts\UserRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -20,6 +22,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             MuscleGroupRepositoryInterface::class,
             MuscleGroupRepository::class
+        );
+
+        $this->app->bind(
+            UserRepositoryInterface::class,
+            UserRepository::class
         );
     }
 

@@ -7,9 +7,7 @@ use App\Models\Equipment;
 use Illuminate\Support\Collection;
 use Throwable;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-/**
- * Class EquipmentService.
- */
+
 class EquipmentService
 {
 	public function __construct(EquipmentRepositoryInterface $repository) {

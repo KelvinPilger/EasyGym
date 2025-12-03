@@ -1,21 +1,28 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Eloquent;
 
+use App\Models\User;
+use App\Repositories\Contracts\UserRepositoryInterface;
+use Illuminate\Support\Collection;
 use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
-//use Your Model
+use Illuminate\Support\Facades\Hash;
 
-/**
- * Class UserRepository.
- */
-class UserRepository extends BaseRepository
+class UserRepository extends BaseRepository implements UserRepositoryInterface
 {
-    /**
-     * @return string
-     *  Return the model
-     */
     public function model()
     {
-        //return YourModel::class;
+        return User::class;
+    }
+
+    public function store(array $data): User {
+        $data['password'] = Hash::make($data['password']);
+
+        return User::create($data);
+    }
+
+    public function deleteById($id): bool {
+        $user = User::findOrFail($id);
+        return (bool) $user->delete();
     }
 }
