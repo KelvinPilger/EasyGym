@@ -14,6 +14,16 @@ class UserService
         $this->repository = $repository;
     }
 
+    public function list(array $data): Collection {
+        try {
+            return $this->repository->list($data);
+        } catch (ModelNotFoundException $e) {
+            throw $e;
+        } catch (ThrowableException $e) {
+            throw $e;
+        }
+    }
+
     public function store(array $data): User {
         try {
             return $this->repository->store($data);
@@ -23,6 +33,17 @@ class UserService
             throw $e;
         }
     }
+	
+	public function update(array $data): User {
+		try {
+			$id = (int) $data['id'];
+			return $this->repository->update($data, $id);
+		} catch(ModelNotFoundException $e) {
+			throw $e;
+		} catch(Throwable $e) {
+            throw $e;
+        }
+	}
 
     public function delete(array $data): bool {
         try {

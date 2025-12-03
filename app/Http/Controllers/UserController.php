@@ -12,6 +12,8 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpFoundation\Response;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserDeleteRequest;
+use App\Http\Requests\UserIndexRequest;
+use App\Http\Requests\UserUpdateRequest;
 
 
 class UserController extends Controller
@@ -20,8 +22,23 @@ class UserController extends Controller
         $this->service = $service;
     }
 
+    public function index(UserIndexRequest $request) {
+        $data = $this->service->list($request->validated());
+
+        return new UserCollection(
+            UserResource::collection($data)
+        );
+
+    }
+
     public function store(UserStoreRequest $request) {
         $data = $this->service->store($request->validated());
+
+        return new UserResource($data);
+    }
+
+    public function update(UserUpdateRequest $request) {
+        $data = $this->service->update($request->validated());
 
         return new UserResource($data);
     }

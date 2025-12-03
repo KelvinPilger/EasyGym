@@ -24,6 +24,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('muscle-group/{id}', [MuscleGroupController::class, 'update']);
     Route::delete('muscle-group/{id}', [MuscleGroupController::class, 'delete']);
 
+    Route::get('/user', [UserController::class, 'index']);
+    Route::patch('/user/{id}', [UserController::class, 'update']);
+    Route::put('/user/{id}', [UserController::class, 'update']);
     Route::post('/user', [UserController::class, 'store']);
     Route::delete('user/{id}', [UserController::class, 'delete']);
 });
