@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EquipmentController;
 use App\Http\Controllers\MuscleGroupController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ExerciseController;
 use App\Models\Equipment;
 use App\Models\MuscleGroup;
 
@@ -29,4 +30,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/user/{id}', [UserController::class, 'update']);
     Route::post('/user', [UserController::class, 'store']);
     Route::delete('user/{id}', [UserController::class, 'delete']);
+
+    Route::get('/exercise', [ExerciseController::class, 'index']);
+    Route::post('/exercise', [ExerciseController::class, 'store']);
+    Route::put('/exercise/{id}', [ExerciseController::class, 'update']);
+    Route::delete('/exercise', [ExerciseController::class, 'delete']);
 });

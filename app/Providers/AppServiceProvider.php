@@ -8,6 +8,8 @@ use App\Repositories\Eloquent\MuscleGroupRepository;
 use App\Repositories\Contracts\MuscleGroupRepositoryInterface;
 use App\Repositories\Eloquent\UserRepository;
 use App\Repositories\Contracts\UserRepositoryInterface;
+use App\Repositories\Eloquent\ExerciseRepository;
+use App\Repositories\Contracts\ExerciseRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -27,6 +29,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             UserRepositoryInterface::class,
             UserRepository::class
+        );
+
+        $this->app->bind(
+            ExerciseRepositoryInterface::class,
+            ExerciseRepository::class
         );
     }
 

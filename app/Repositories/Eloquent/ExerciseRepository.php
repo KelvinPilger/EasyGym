@@ -1,21 +1,37 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Eloquent;
 
+use App\Models\Exercise;
+use App\Repositories\Contracts\ExerciseRepositoryInterface;
+use Illuminate\Support\Collection;
 use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
-//use Your Model
 
-/**
- * Class ExerciseRepository.
- */
-class ExerciseRepository extends BaseRepository
+class ExerciseRepository extends BaseRepository implements ExerciseRepositoryInterface
 {
-    /**
-     * @return string
-     *  Return the model
-     */
     public function model()
     {
-        //return YourModel::class;
+        return Exercise::class;
     }
+
+    public function list(array $data): Collection {
+        return Exercise::query()
+            ->with(['muscleGroup:id,name', 'equipment:id,name'])
+            ->when(isset($data['muscle_group_id']), fn ($q) =>
+                $q->where('muscle_group_id', $data['muscle_group_id']))
+            ->when(isset($data['equipment_id']), fn ($q) =>
+                $q->where('equipment_id', $data['equipment_id']))
+            ->get();
+    }
+	
+	public function store(array $data): Exercise {
+		return Exercise::create($data);
+	}
+	
+	public function update(array $data): Exercise {
+		$exercise = Exercise::findOrFail($data['id']);
+		$exercise->update($data);
+		
+		return $exercise;
+	}
 }

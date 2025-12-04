@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\MuscleGroup;
+use App\Models\Equipment;
+use App\Models\WorkoutExercise;
 
 class Exercise extends Model
 {
@@ -27,14 +30,14 @@ class Exercise extends Model
     ];
 
     public function equipment() {
-        $this->belongsTo(Equipment::class, 'equipment_id');
+        return $this->belongsTo(Equipment::class, 'equipment_id', 'id');
     }
 
     public function muscleGroup() {
-        $this->belongsTo(MuscleGroup::class, 'muscle_group_id');
+        return $this->belongsTo(MuscleGroup::class, 'muscle_group_id', 'id');
     }
 
     public function workoutExercise() {
-        $this->hasMany(WorkoutExercise::class, 'exercise_id');
+        return $this->hasMany(WorkoutExercise::class, 'exercise_id');
     }
 }

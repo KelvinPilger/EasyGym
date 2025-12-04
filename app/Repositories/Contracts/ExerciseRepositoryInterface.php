@@ -1,8 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Repositories\Contracts;
+use App\Models\Exercise;
+use Illuminate\Support\Collection;
 
 interface ExerciseRepositoryInterface
 {
-    //
+    public function list(array $data): Collection;
+	public function store(array $data): Exercise;
+	public function update(array $data): Exercise;
 }
