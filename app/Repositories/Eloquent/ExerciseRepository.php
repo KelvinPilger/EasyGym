@@ -24,6 +24,11 @@ class ExerciseRepository extends BaseRepository implements ExerciseRepositoryInt
             ->get();
     }
 
+    public function show($id): Exercise {
+        $exercise = Exercise::findOrFail($id);
+        return $exercise;
+    }
+
 	public function store(array $data): Exercise {
 		return Exercise::create($data);
 	}

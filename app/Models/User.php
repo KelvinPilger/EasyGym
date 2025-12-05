@@ -50,6 +50,6 @@ class User extends Authenticatable
     }
 
     public function workout() {
-        $this->hasMany(Workout::class, 'user_id');
+        return $this->hasMany(Workout::class, 'user_id');
     }
 }

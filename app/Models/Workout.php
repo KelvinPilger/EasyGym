@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Workout extends Model
 {
+	use SoftDeletes;
+	
     protected $table = 'workout';
 
     protected $fillable = [
@@ -23,14 +26,14 @@ class Workout extends Model
     ];
 
     public function workoutExercise() {
-        $this->hasMany(WorkoutExercise::class, 'workout_id');
+        return $this->hasMany(WorkoutExercise::class, 'workout_id');
     }
 
     public function user() {
-        $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function workoutSession() {
-        $this->hasMany(WorkoutSession::class, 'workout_id');
+        return $this->hasMany(WorkoutSession::class, 'workout_id');
     }
 }

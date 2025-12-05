@@ -11,6 +11,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpFoundation\Response;
 use App\Http\Requests\ExerciseIndexRequest;
+use App\Http\Requests\ExerciseShowRequest;
 use App\Http\Requests\ExerciseStoreRequest;
 use App\Http\Requests\ExerciseUpdateRequest;
 use App\Http\Requests\ExerciseDeleteRequest;
@@ -30,7 +31,11 @@ class ExerciseController extends Controller
         );
     }
 
-	// public function show() {}
+	public function show(ExerciseShowRequest $request) {
+        $data = $this->service->show($request->validated());
+
+        return new ExerciseResource ($data);
+    }
 
 	public function store(ExerciseStoreRequest $request) {
 		$data = $this->service->store($request->validated());
