@@ -23,15 +23,22 @@ class ExerciseRepository extends BaseRepository implements ExerciseRepositoryInt
                 $q->where('equipment_id', $data['equipment_id']))
             ->get();
     }
-	
+
 	public function store(array $data): Exercise {
 		return Exercise::create($data);
 	}
-	
+
 	public function update(array $data): Exercise {
 		$exercise = Exercise::findOrFail($data['id']);
 		$exercise->update($data);
-		
+
 		return $exercise;
 	}
+
+    public function deleteById($id): bool {
+        $exercise = Exercise::findOrFail($id);
+        return (bool) $exercise->delete();
+
+
+    }
 }

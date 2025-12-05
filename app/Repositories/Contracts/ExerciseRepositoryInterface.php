@@ -9,4 +9,5 @@ interface ExerciseRepositoryInterface
     public function list(array $data): Collection;
 	public function store(array $data): Exercise;
 	public function update(array $data): Exercise;
+    public function deleteById($id): bool;
 }
