@@ -24,15 +24,20 @@ class WorkoutRepository extends BaseRepository implements WorkoutRepositoryInter
 			->orderBy('id')
             ->get();
     }
-	
+
 	public function store(array $data): Workout {
 		return Workout::create($data);
 	}
-	
+
 	public function update(array $data): Workout {
 		$workout = Workout::findOrFail($data['id']);
 		$workout->update($data);
-	
+
 		return $workout;
 	}
+
+    public function deleteById($id): bool {
+        $workout = Workout::findOrFail($id);
+        return (bool) $workout->delete();
+    }
 }

@@ -23,7 +23,7 @@ class WorkoutService
             throw $e;
         }
     }
-	
+
 	public function store(array $data) {
 		try {
             return $this->repository->store($data);
@@ -33,7 +33,7 @@ class WorkoutService
             throw $e;
         }
 	}
-	
+
 	public function update(array $data) {
 		try {
             return $this->repository->update($data);
@@ -43,4 +43,15 @@ class WorkoutService
             throw $e;
         }
 	}
+
+    public function delete(array $data): bool {
+        try {
+			$id = (int) $data['id'];
+			return $this->repository->deleteById($id);
+		} catch(ModelNotFoundException $e) {
+			throw $e;
+		} catch(Throwable $e) {
+            throw $e;
+        }
+    }
 }

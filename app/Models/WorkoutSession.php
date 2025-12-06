@@ -16,10 +16,12 @@ class WorkoutSession extends Model
     ];
 
     public function workout() {
-        $this->belongsTo(Workout::class, 'workout_id');
+        return $this->belongsTo(Workout::class, 'workout_id');
     }
 
     public function exerciseSession() {
-        $this->hasMany(ExerciseSession::class, 'workout_session_id');
+        return $this->hasMany(ExerciseSession::class, 'workout_session_id');
     }
+
+    public $timestamps = false;
 }

@@ -16,7 +16,7 @@ class WorkoutUpdateRequest extends FormRequest
 
         return $data;
     }
-	
+
     public function messages(): array {
 		return [
 			'id.required' => 'O ID do treino deve ser preenchido.',
@@ -39,7 +39,7 @@ class WorkoutUpdateRequest extends FormRequest
 			'user_id' => ['sometimes', 'integer']
         ];
     }
-	
+
 	public function authorize(): bool
     {
         return true;
