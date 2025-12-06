@@ -45,6 +45,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/workout/{id}', [WorkoutController::class, 'delete']);
 
     Route::get('/workout-session', [WorkoutSessionController::class, 'index']);
+    Route::get('/workout-session/{id}', [WorkoutSessionController::class, 'show']);
 	Route::post('/workout-session', [WorkoutSessionController::class, 'store']);
 	Route::put('/workout-session/{id}', [WorkoutSessionController::class, 'update']);
     Route::delete('/workout-session/{id}', [WorkoutSessionController::class, 'delete']);

@@ -24,6 +24,17 @@ class WorkoutSessionService
         }
     }
 
+    public function show(array $data) {
+        try {
+            $id = (int) $data['id'];
+            return $this->repository->show($id);
+        } catch(ModelNotFoundException $e) {
+			throw $e;
+		} catch(Throwable $e) {
+            throw $e;
+        }
+    }
+
     public function store(array $data): WorkoutSession {
 		try {
             return $this->repository->store($data);

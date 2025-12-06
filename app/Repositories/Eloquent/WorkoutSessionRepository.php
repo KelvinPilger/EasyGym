@@ -23,6 +23,16 @@ class WorkoutSessionRepository extends BaseRepository implements WorkoutSessionR
             ->get();
     }
 
+    public function show($id): WorkoutSession {
+        $workoutSession = WorkoutSession::query()
+            ->with('workout:id,workout_desc')
+            ->where('id', $id)
+            ->orderBy('id')
+            ->firstOrFail();
+
+        return $workoutSession;
+    }
+
     public function store(array $data): WorkoutSession {
         return WorkoutSession::create($data);
     }

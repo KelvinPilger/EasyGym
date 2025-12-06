@@ -30,6 +30,12 @@ class WorkoutSessionController extends Controller
         );
     }
 
+    public function show(WorkoutSessionShowRequest $request) {
+        $data = $this->service->show($request->validated());
+
+        return new WorkoutSessionResource($data);
+    }
+
     public function store(WorkoutSessionStoreRequest $request) {
         $data = $this->service->store($request->validated());
 
