@@ -15,31 +15,38 @@ use App\Http\Requests\EquipmentStoreRequest;
 use App\Http\Requests\EquipmentUpdateRequest;
 use App\Http\Requests\EquipmentDeleteRequest;
 
-class EquipmentController extends Controller
+class EquipmentController extends AbstractController
 {
     public function __construct(EquipmentService $service) {
         $this->service = $service;
     }
 
-    public function index(EquipmentIndexRequest $request) {
-        $data = $this->service->list($request->validated());
-
-        return new EquipmentCollection(
-            EquipmentResource::collection($data)
-        );
+    protected function service()
+    {
+        return $this->service;
     }
 
-    public function store(EquipmentStoreRequest $request) {
-        $data = $this->service->store($request->validated());
-
-        return new EquipmentResource($data);
+    protected function resource()
+    {
+        return EquipmentResource::class;
     }
 
-    public function update(EquipmentUpdateRequest $request) {
-        $data = $this->service->update($request->validated());
-
-        return new EquipmentResource($data);
+    protected function collection()
+    {
+        return EquipmentCollection::class;
     }
+	
+	public function index(EquipmentIndexRequest $request) {
+		return parent::abstractIndex($request);
+	}
+	
+	public function store(EquipmentStoreRequest $request) {
+		return parent::abstractStore($request);
+	}
+	
+	public function update(EquipmentUpdateRequest $request) {
+		return parent::abstractUpdate($request);
+	}
 
 	public function delete(EquipmentDeleteRequest $request)
 	{

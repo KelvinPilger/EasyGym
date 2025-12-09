@@ -21,6 +21,7 @@ class ExerciseUpdateRequest extends FormRequest
 		return [
 			'id.required' => 'O ID do exercício deve ser preenchido.',
 			'id.integer' => 'O ID do exercício deve ser do tipo inteiro.',
+			'id.exists' => 'O exercício repassado não foi encontrado, ou foi excluído.',
 			'exercise_desc.string' => 'O nome do exercício deve ser do tipo string.',
 			'exercise_desc.required' => 'O nome do exercício deve ser informado.',
 			'exercise_desc.max' => 'O nome do exercício deve ter no máximo 50 caracteres.',
@@ -38,7 +39,7 @@ class ExerciseUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => ['required', 'integer', 'exists:exercise,id'],
+            'id' => ['required', 'integer', 'exists:exercise,id,deleted_at,NULL'],
 			'exercise_desc' => ['required', 'string', 'max:50'],
 			'muscle_group_id' => ['required', 'integer'],
 			'equipment_id' => ['required', 'integer'],
