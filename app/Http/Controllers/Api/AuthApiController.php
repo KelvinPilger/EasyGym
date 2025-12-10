@@ -5,36 +5,20 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Services\AuthApiService;
 
 class AuthApiController extends Controller {
+	public function __construct(AuthApiService $service) {
+		$this->service = $service;
+	}
+	
 	public function login(Request $request)
     {
-        $credentials = $request->validate([
-            'email'    => ['required', 'email'],
-            'password' => ['required'],
-        ]);
-
-        if (! Auth::attempt($credentials)) {
-            return response()->json(['message' => 'Credenciais inválidas'], 401);
-        }
-
-        $user = $request->user();
-
-        // Gera token Sanctum
-        $token = $user->createToken('easygym-api')->plainTextToken;
-
-        return response()->json([
-            'user'  => $user,
-            'token' => $token,
-        ]);
+        return $this->service->login($request);
     }
 	
 	public function logout(Request $request)
 	{
-		$request->user()->currentAccessToken()->delete();
-
-		return response()->json([
-			'message' => 'Logout realizado com sucesso.'
-		]);
+		return $this->service->logout($request);
 	}
 }

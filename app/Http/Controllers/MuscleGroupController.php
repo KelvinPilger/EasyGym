@@ -17,30 +17,33 @@ use App\Http\Requests\MuscleGroupDeleteRequest;
 
 
 
-class MuscleGroupController extends Controller
+class MuscleGroupController extends AbstractController
 {
     public function __construct(MuscleGroupService $service) {
         $this->service = $service;
     }
+	
+	protected function service() {
+		return $this->service;
+	}
+	protected function resource() {
+		return MuscleGroupResource::class;
+	}
+	
+	protected function collection() {
+		return MuscleGroupCollection::class;
+	}
 
     public function index(MuscleGroupIndexRequest $request) {
-        $data = $this->service->list($request->validated());
-
-        return new MuscleGroupCollection (
-            MuscleGroupResource::collection($data)
-        );
+		return parent::abstractIndex($request);
     }
 
     public function store(MuscleGroupStoreRequest $request) {
-        $data = $this->service->store($request->validated());
-
-        return new MuscleGroupResource($data);
+        return parent::abstractStore($request);
     }
 
     public function update(MuscleGroupUpdateRequest $request) {
-        $data = $this->service->update($request->validated());
-
-        return new MuscleGroupResource($data);
+        return parent::abstractUpdate($request);
     }
 
     public function delete(MuscleGroupDeleteRequest $request) {

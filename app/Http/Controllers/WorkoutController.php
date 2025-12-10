@@ -16,30 +16,34 @@ use App\Http\Requests\WorkoutStoreRequest;
 use App\Http\Requests\WorkoutUpdateRequest;
 use App\Http\Requests\WorkoutDeleteRequest;
 
-class WorkoutController extends Controller
+class WorkoutController extends AbstractController
 {
     public function __construct(WorkoutService $service) {
         $this->service = $service;
     }
+	
+	protected function service() {
+		return $this->service;
+	}
+	
+	protected function resource() {
+		return WorkoutResource::class;
+	}
+	
+	protected function collection() {
+		return WorkoutCollection::class;
+	}
 
     public function index(WorkoutIndexRequest $request) {
-        $data = $this->service->list($request->validated());
-
-        return new WorkoutCollection(
-            WorkoutResource::collection($data)
-        );
+        return parent::abstractIndex($request);
     }
 
 	public function store(WorkoutStoreRequest $request) {
-		$data = $this->service->store($request->validated());
-
-		return new WorkoutResource($data);
+		return parent::abstractStore($request);
 	}
 
 	public function update(WorkoutUpdateRequest $request) {
-		$data = $this->service->update($request->validated());
-
-		return new WorkoutResource($data);
+		return parent::abstractUpdate($request);
 	}
 
     public function delete(WorkoutDeleteRequest $request) {

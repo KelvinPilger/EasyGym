@@ -16,18 +16,26 @@ use App\Http\Requests\WorkoutSessionStoreRequest;
 use App\Http\Requests\WorkoutSessionUpdateRequest;
 use App\Http\Requests\WorkoutSessionDeleteRequest;
 
-class WorkoutSessionController extends Controller
+class WorkoutSessionController extends AbstractController
 {
     public function __construct(WorkoutSessionService $service) {
         $this->service = $service;
     }
+	
+	protected function service() {
+		return $this->service;
+	}
+	
+	protected function resource() {
+		return WorkoutSessionResource::class;
+	}
+	
+	protected function collection() {
+		return WorkoutSessionCollection::class;
+	}
 
     public function index(WorkoutSessionIndexRequest $request) {
-        $data = $this->service->list($request->validated());
-
-        return new WorkoutSessionCollection(
-            WorkoutSessionResource::collection($data)
-        );
+        return parent::abstractIndex($request);
     }
 
     public function show(WorkoutSessionShowRequest $request) {
@@ -37,15 +45,11 @@ class WorkoutSessionController extends Controller
     }
 
     public function store(WorkoutSessionStoreRequest $request) {
-        $data = $this->service->store($request->validated());
-
-        return new WorkoutSessionResource($data);
+        return parent::abstractStore($request);
     }
 
     public function update(WorkoutSessionUpdateRequest $request) {
-        $data = $this->service->update($request->validated());
-
-        return new WorkoutSessionResource($data);
+        return parent::abstractUpdate($request);
     }
 
     public function delete(WorkoutSessionDeleteRequest $request) {

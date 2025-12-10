@@ -14,6 +14,8 @@ use App\Repositories\Eloquent\WorkoutRepository;
 use App\Repositories\Contracts\WorkoutRepositoryInterface;
 use App\Repositories\Eloquent\WorkoutSessionRepository;
 use App\Repositories\Contracts\WorkoutSessionRepositoryInterface;
+use App\Repositories\Eloquent\WorkoutExerciseRepository;
+use App\Repositories\Contracts\WorkoutExerciseRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -48,6 +50,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             WorkoutSessionRepositoryInterface::class,
             WorkoutSessionRepository::class
+        );
+
+        $this->app->bind(
+            WorkoutExerciseRepositoryInterface::class,
+            WorkoutExerciseRepository::class
         );
     }
 

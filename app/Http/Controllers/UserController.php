@@ -16,31 +16,34 @@ use App\Http\Requests\UserIndexRequest;
 use App\Http\Requests\UserUpdateRequest;
 
 
-class UserController extends Controller
+class UserController extends AbstractController
 {
     public function __construct(UserService $service) {
         $this->service = $service;
     }
+	
+	protected function service() {
+		return $this->service;
+	}
+	
+	protected function resource() {
+		return UserResource::class;
+	}
+	
+	protected function collection() {
+		return UserCollection::class;
+	}
 
     public function index(UserIndexRequest $request) {
-        $data = $this->service->list($request->validated());
-
-        return new UserCollection(
-            UserResource::collection($data)
-        );
-
+		return parent::abstractIndex($request);
     }
 
     public function store(UserStoreRequest $request) {
-        $data = $this->service->store($request->validated());
-
-        return new UserResource($data);
+        return parent::abstractStore($request);
     }
 
     public function update(UserUpdateRequest $request) {
-        $data = $this->service->update($request->validated());
-
-        return new UserResource($data);
+        return parent::abstractUpdate($request);
     }
 
     public function delete(UserDeleteRequest $request) {

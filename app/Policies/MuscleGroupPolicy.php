@@ -47,7 +47,7 @@ class MuscleGroupPolicy
      */
     public function delete(User $user): bool
     {
-        return strtolower($user->role) == 'instrutor';
+        return strtolower($user->role) == 'admin';
     }
 
     /**
