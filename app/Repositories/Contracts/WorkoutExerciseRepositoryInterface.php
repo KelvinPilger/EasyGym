@@ -9,4 +9,6 @@ interface WorkoutExerciseRepositoryInterface
 {
     public function index(array $data): Collection;
 	public function store(array $data): WorkoutExercise;
+    public function update(array $data): WorkoutExercise;
+    public function deleteById($id): bool;
 }

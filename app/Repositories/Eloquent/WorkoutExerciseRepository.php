@@ -28,4 +28,15 @@ class WorkoutExerciseRepository extends BaseRepository implements WorkoutExercis
 	public function store(array $data): WorkoutExercise {
 		return WorkoutExercise::create($data);
 	}
+
+    public function update(array $data): WorkoutExercise {
+        $workoutExercise = WorkoutExercise::findOrFail($data['id']);
+        $workoutExercise->update($data);
+        return $workoutExercise;
+    }
+
+    public function deleteById($id): bool {
+        $workoutExercise = WorkoutExercise::findOrFail($id);
+        return (bool) $workoutExercise->delete();
+    }
 }

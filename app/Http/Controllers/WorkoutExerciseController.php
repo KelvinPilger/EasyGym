@@ -37,8 +37,16 @@ class WorkoutExerciseController extends AbstractController
     public function index(WorkoutExerciseIndexRequest $request) {
         return parent::abstractIndex($request);
     }
-	
+
 	public function store(WorkoutExerciseStoreRequest $request) {
 		return parent::abstractStore($request);
 	}
+
+    public function update(WorkoutExerciseUpdateRequest $request) {
+        return parent::abstractUpdate($request);
+    }
+
+    public function delete(WorkoutExerciseDeleteRequest $request) {
+        return parent::abstractDelete($request);
+    }
 }
