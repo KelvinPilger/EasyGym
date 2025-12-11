@@ -11,7 +11,7 @@ abstract class AbstractController
     abstract protected function collection();
 
 	protected function abstractIndex(FormRequest $request) {
-        $data = $this->service()->list($request->validated());
+        $data = $this->service()->index($request->validated());
 
         $resource = $this->resource();
         $collection = $this->collection();
@@ -20,20 +20,20 @@ abstract class AbstractController
             $resource::collection($data)
         );
     }
-	
+
 	protected function abstractStore(FormRequest $request) {
 		$data = $this->service()->store($request->validated());
-		
+
 		$resource = $this->resource();
-		
+
 		return new $resource($data);
 	}
-	
+
 	protected function abstractUpdate(FormRequest $request) {
 		$data = $this->service()->update($request->validated());
-		
+
 		$resource = $this->resource();
-		
+
 		return new $resource($data);
 	}
 }

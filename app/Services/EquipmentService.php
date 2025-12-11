@@ -14,9 +14,9 @@ class EquipmentService
 		$this->repository = $repository;
 	}
 
-	public function list(array $data): Collection {
+	public function index(array $data): Collection {
         try {
-		    return $this->repository->list($data);
+		    return $this->repository->index($data);
         } catch(ModelNotFoundException $e) {
 			throw $e;
 		} catch(Throwable $e) {

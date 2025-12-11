@@ -14,17 +14,17 @@ class WorkoutExerciseService
         $this->repository = $repository;
     }
 
-    public function list(array $data): Collection {
+    public function index(array $data): Collection {
         try {
-            return $this->repository->list($data);
+            return $this->repository->index($data);
         } catch(ModelNotFoundException $e) {
 			throw $e;
 		} catch(Throwable $e) {
             throw $e;
         }
     }
-	
-	public function store(array $data): Collection {
+
+	public function store(array $data): WorkoutExercise {
         try {
             return $this->repository->store($data);
         } catch(ModelNotFoundException $e) {

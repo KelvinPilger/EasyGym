@@ -6,4 +6,5 @@ use App\Models\WorkoutExercise;
 
 Route::prefix('workout-exercise')->group(function () {
     Route::get('/', [WorkoutExerciseController::class, 'index']);
+	Route::post('/', [WorkoutExerciseController::class, 'store']);
 });

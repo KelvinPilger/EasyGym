@@ -6,7 +6,7 @@ use Illuminate\Support\Collection;
 
 interface ExerciseRepositoryInterface
 {
-    public function list(array $data): Collection;
+    public function index(array $data): Collection;
     public function show($id): Exercise;
 	public function store(array $data): Exercise;
 	public function update(array $data): Exercise;

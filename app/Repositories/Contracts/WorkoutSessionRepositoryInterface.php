@@ -7,7 +7,7 @@ use Illuminate\Support\Collection;
 
 interface WorkoutSessionRepositoryInterface
 {
-    public function list(array $data): Collection;
+    public function index(array $data): Collection;
     public function show($id): WorkoutSession;
     public function store(array $data): WorkoutSession;
     public function update(array $data): WorkoutSession;

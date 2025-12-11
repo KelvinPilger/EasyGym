@@ -14,7 +14,7 @@ class WorkoutSessionRepository extends BaseRepository implements WorkoutSessionR
         return WorkoutSession::class;
     }
 
-    public function list(array $data): Collection {
+    public function index(array $data): Collection {
         return WorkoutSession::query()
             ->with('workout:id,workout_desc')
             ->when(isset($data['workout_id']), fn ($q) =>

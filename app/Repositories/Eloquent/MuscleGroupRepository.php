@@ -22,7 +22,7 @@ class MuscleGroupRepository extends BaseRepository implements MuscleGroupReposit
         return MuscleGroup::class;
     }
 
-    public function list(array $data): Collection {
+    public function index(array $data): Collection {
         return MuscleGroup::query()
             ->when(isset($data['id']), fn ($q) => $q->where('id', $data['id']))
             ->when(isset($data['name']), fn ($q) => $q->where('name', 'like', '%'.$data['name'].'%'))

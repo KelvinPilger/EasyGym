@@ -14,7 +14,7 @@ class WorkoutRepository extends BaseRepository implements WorkoutRepositoryInter
         return Workout::class;
     }
 
-    public function list(array $data): Collection {
+    public function index(array $data): Collection {
         return Workout::query()
             ->with('user')
             ->when(isset($data['user_id']), fn ($q) =>

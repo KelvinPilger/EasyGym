@@ -15,7 +15,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
         return User::class;
     }
 
-    public function list(array $data): Collection {
+    public function index(array $data): Collection {
         return User::query()
             ->when(isset($data['id']), fn ($q) => $q->where('id', $data['id']))
             ->when(isset($data['email']), fn ($q) => $q->where('email', $data['email']))
@@ -28,12 +28,12 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
 
         return User::create($data);
     }
-	
+
 	public function update(array $data, int $id): User {
 		$user = User::findOrFail($id);
 		$user->fill($data);
 		$user->save();
-		
+
 		return $user;
 	}
 

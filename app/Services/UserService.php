@@ -14,9 +14,9 @@ class UserService
         $this->repository = $repository;
     }
 
-    public function list(array $data): Collection {
+    public function index(array $data): Collection {
         try {
-            return $this->repository->list($data);
+            return $this->repository->index($data);
         } catch (ModelNotFoundException $e) {
             throw $e;
         } catch (ThrowableException $e) {
@@ -33,7 +33,7 @@ class UserService
             throw $e;
         }
     }
-	
+
 	public function update(array $data): User {
 		try {
 			$id = (int) $data['id'];

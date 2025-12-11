@@ -14,7 +14,7 @@ class WorkoutExerciseRepository extends BaseRepository implements WorkoutExercis
         return WorkoutExercise::class;
     }
 
-    public function list(array $data): Collection {
+    public function index(array $data): Collection {
         return WorkoutExercise::query()
             ->with(['workout:id,workout_desc', 'exercise:id,exercise_desc'])
             ->when(isset($data['workout_id']), fn ($q) =>
@@ -24,7 +24,7 @@ class WorkoutExerciseRepository extends BaseRepository implements WorkoutExercis
             ->orderBy('id')
             ->get();
     }
-	
+
 	public function store(array $data): WorkoutExercise {
 		return WorkoutExercise::create($data);
 	}

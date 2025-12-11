@@ -14,9 +14,9 @@ class WorkoutService
         $this->repository = $repository;
     }
 
-    public function list(array $data) {
+    public function index(array $data) {
         try {
-            return $this->repository->list($data);
+            return $this->repository->index($data);
         } catch(ModelNotFoundException $e) {
 			throw $e;
 		} catch(Throwable $e) {

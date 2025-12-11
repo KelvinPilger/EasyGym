@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Throwable;
+16|tNZt5h7SNvKuzqkC5rHTcAGLy3p4SVJ6mgVNBe1011f2ff7b
 use Illuminate\requestbase\Eloquent\ModelNotFoundException;
 
 class AuthService

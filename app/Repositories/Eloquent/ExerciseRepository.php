@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Repositories\Eloquent;
 
 use App\Models\Exercise;
@@ -14,7 +13,7 @@ class ExerciseRepository extends BaseRepository implements ExerciseRepositoryInt
         return Exercise::class;
     }
 
-    public function list(array $data): Collection {
+    public function index(array $data): Collection {
         return Exercise::query()
             ->with(['muscleGroup:id,name', 'equipment:id,name'])
             ->when(isset($data['muscle_group_id']), fn ($q) =>
@@ -43,7 +42,5 @@ class ExerciseRepository extends BaseRepository implements ExerciseRepositoryInt
     public function deleteById($id): bool {
         $exercise = Exercise::findOrFail($id);
         return (bool) $exercise->delete();
-
-
     }
 }
