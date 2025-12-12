@@ -44,7 +44,7 @@ class WorkoutExerciseService
         }
     }
 
-    public function deleteById(array $data): bool {
+    public function delete(array $data): bool {
         try {
             $id = (int) $data['id'];
             return $this->repository->deleteById($id);

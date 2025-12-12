@@ -22,14 +22,14 @@ class MuscleGroupController extends AbstractController
     public function __construct(MuscleGroupService $service) {
         $this->service = $service;
     }
-	
+
 	protected function service() {
 		return $this->service;
 	}
 	protected function resource() {
 		return MuscleGroupResource::class;
 	}
-	
+
 	protected function collection() {
 		return MuscleGroupCollection::class;
 	}
@@ -47,25 +47,6 @@ class MuscleGroupController extends AbstractController
     }
 
     public function delete(MuscleGroupDeleteRequest $request) {
-        try {
-            $deleted = $this->service->delete($request->validated());
-
-			return response()->json([
-				'code' => Response::HTTP_OK,
-				'deleted' => $deleted,
-				'message' => 'Grupo muscular excluído com sucesso!'
-			]);
-		} catch (ModelNotFoundException $e) {
-			return response()->json([
-				'code' => Response::HTTP_NOT_FOUND,
-				'message' => 'Grupo muscular não encontrado!'
-			], Response::HTTP_NOT_FOUND);
-		} catch (Exception $e) {
-			return response()->json([
-				'code' => Response::HTTP_INTERNAL_SERVER_ERROR,
-				'message' => 'Erro interno, não foi possível excluir o grupo muscular.',
-				'exception' => $e->getMessage()
-			]);
-        }
+        return parent::abstractDelete($request);
     }
 }

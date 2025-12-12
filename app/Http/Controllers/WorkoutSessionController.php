@@ -21,15 +21,15 @@ class WorkoutSessionController extends AbstractController
     public function __construct(WorkoutSessionService $service) {
         $this->service = $service;
     }
-	
+
 	protected function service() {
 		return $this->service;
 	}
-	
+
 	protected function resource() {
 		return WorkoutSessionResource::class;
 	}
-	
+
 	protected function collection() {
 		return WorkoutSessionCollection::class;
 	}
@@ -53,25 +53,6 @@ class WorkoutSessionController extends AbstractController
     }
 
     public function delete(WorkoutSessionDeleteRequest $request) {
-        try {
-			$deleted = $this->service->delete($request->validated());
-
-			return response()->json([
-				'code' => Response::HTTP_OK,
-				'deleted' => $deleted,
-				'message' => 'Sessão de treino excluída com sucesso!'
-			]);
-		} catch (ModelNotFoundException $e) {
-			return response()->json([
-				'code' => Response::HTTP_NOT_FOUND,
-				'message' => 'Sessão de treino não encontrada!'
-			], Response::HTTP_NOT_FOUND);
-		} catch (Exception $e) {
-			return response()->json([
-				'code' => Response::HTTP_INTERNAL_SERVER_ERROR,
-				'message' => 'Erro interno, não foi possível excluir a sessão de treino.',
-				'exception' => $e->getMessage()
-			]);
-		}
+        return parent::abstractDelete($request);
     }
 }

@@ -42,7 +42,7 @@ abstract class AbstractController
 
     protected function abstractDelete(FormRequest $request) {
         try {
-			$deleted = $this->service()->deleteById($request->validated());
+			$deleted = $this->service()->delete($request->validated());
 
 			return response()->json([
 				'code' => Response::HTTP_OK,

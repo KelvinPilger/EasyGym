@@ -21,15 +21,15 @@ class UserController extends AbstractController
     public function __construct(UserService $service) {
         $this->service = $service;
     }
-	
+
 	protected function service() {
 		return $this->service;
 	}
-	
+
 	protected function resource() {
 		return UserResource::class;
 	}
-	
+
 	protected function collection() {
 		return UserCollection::class;
 	}
@@ -47,25 +47,6 @@ class UserController extends AbstractController
     }
 
     public function delete(UserDeleteRequest $request) {
-        try {
-            $deleted = $this->service->delete($request->validated());
-
-			return response()->json([
-				'code' => Response::HTTP_OK,
-				'deleted' => $deleted,
-				'message' => 'Usuário excluído com sucesso!'
-			]);
-		} catch (ModelNotFoundException $e) {
-			return response()->json([
-				'code' => Response::HTTP_NOT_FOUND,
-				'message' => 'Usuário não encontrado!'
-			], Response::HTTP_NOT_FOUND);
-		} catch (Exception $e) {
-			return response()->json([
-				'code' => Response::HTTP_INTERNAL_SERVER_ERROR,
-				'message' => 'Erro interno, não foi possível excluir o usuário.',
-				'exception' => $e->getMessage()
-			]);
-        }
+        return parent::abstractDelete($request);
     }
 }
