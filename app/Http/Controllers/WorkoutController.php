@@ -16,8 +16,11 @@ use App\Http\Requests\WorkoutStoreRequest;
 use App\Http\Requests\WorkoutUpdateRequest;
 use App\Http\Requests\WorkoutDeleteRequest;
 use App\Http\Requests\WorkoutCompletedRequest;
+use App\Http\Requests\WorkoutWithoutSessionRequest;
 use App\Http\Resources\WorkoutCompletedResource;
 use App\Http\Resources\WorkoutCompletedCollection;
+use App\Http\Resources\WorkoutWithoutSessionResource;
+use App\Http\Resources\WorkoutWithoutSessionCollection;
 
 class WorkoutController extends AbstractController
 {
@@ -46,6 +49,14 @@ class WorkoutController extends AbstractController
 
         return new WorkoutCompletedCollection (
             WorkoutCompletedResource::collection($data)
+        );
+    }
+
+    public function getWorkoutsWithoutSession(WorkoutWithoutSessionRequest $request) {
+        $data = $this->service->getWorkoutsWithoutSession($request->validated());
+
+        return new WorkoutWithoutSessionCollection (
+            WorkoutWithoutSessionResource::collection($data)
         );
     }
 

@@ -9,6 +9,7 @@ interface WorkoutRepositoryInterface
 {
     public function index(array $data): Collection;
     public function getCompletedWorkouts(array $data): Collection;
+    public function getWorkoutsWithoutSession($user_id, $days): Collection;
 	public function store(array $data): Workout;
     public function update(array $data): Workout;
     public function deleteById($id): bool;

@@ -32,6 +32,17 @@ class WorkoutService
         }
     }
 
+    public function getWorkoutsWithoutSession(array $data) {
+        try {
+            $user_id = (int) $data['user_id'];
+            $days = (int) $data['days'];
+
+            return $this->repository->getWorkoutsWithoutSession($user_id, $days);
+        } catch(Throwable $e) {
+            throw $e;
+        }
+    }
+
 	public function store(array $data) {
 		try {
             return $this->repository->store($data);

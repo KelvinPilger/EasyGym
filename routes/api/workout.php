@@ -17,4 +17,6 @@ Route::prefix('workout')->group(function () {
         ->middleware('can:delete,' . Workout::class);
 
     Route::get('/completed/{user_id}', [WorkoutController::class, 'getCompletedWorkouts']);
+
+    Route::get('/away/{user_id}', [WorkoutController::class, 'getWorkoutsWithoutSession']);
 });
