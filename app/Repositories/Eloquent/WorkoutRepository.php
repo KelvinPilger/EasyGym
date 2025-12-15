@@ -25,6 +25,24 @@ class WorkoutRepository extends BaseRepository implements WorkoutRepositoryInter
             ->get();
     }
 
+    public function getCompletedWorkouts(array $data): Collection
+{
+    return Workout::query()
+        ->join('workout_session as s', 's.workout_id', '=', 'workout.id')
+        ->where('workout.user_id', $data['user_id'])
+        ->whereNotNull('s.finished_at')
+        ->selectRaw('
+            workout.id,
+            workout.workout_desc,
+            MAX(s.finished_at) as finished_at,
+            COUNT(s.id) as sections_made
+        ')
+        ->groupBy('workout.id', 'workout.workout_desc', 'workout.maximum_sections')
+        ->havingRaw('COUNT(s.id) >= workout.maximum_sections')
+        ->orderBy('finished_at', 'asc')
+        ->get();
+}
+
 	public function store(array $data): Workout {
 		return Workout::create($data);
 	}

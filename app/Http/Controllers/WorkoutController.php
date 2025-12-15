@@ -15,6 +15,9 @@ use App\Http\Requests\WorkoutShowRequest;
 use App\Http\Requests\WorkoutStoreRequest;
 use App\Http\Requests\WorkoutUpdateRequest;
 use App\Http\Requests\WorkoutDeleteRequest;
+use App\Http\Requests\WorkoutCompletedRequest;
+use App\Http\Resources\WorkoutCompletedResource;
+use App\Http\Resources\WorkoutCompletedCollection;
 
 class WorkoutController extends AbstractController
 {
@@ -36,6 +39,14 @@ class WorkoutController extends AbstractController
 
     public function index(WorkoutIndexRequest $request) {
         return parent::abstractIndex($request);
+    }
+
+    public function getCompletedWorkouts(WorkoutCompletedRequest $request) {
+        $data = $this->service->getCompletedWorkouts($request->validated());
+
+        return new WorkoutCompletedCollection (
+            WorkoutCompletedResource::collection($data)
+        );
     }
 
 	public function store(WorkoutStoreRequest $request) {

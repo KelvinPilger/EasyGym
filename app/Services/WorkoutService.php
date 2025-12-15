@@ -24,6 +24,14 @@ class WorkoutService
         }
     }
 
+    public function getCompletedWorkouts(array $data) {
+        try {
+            return $this->repository->getCompletedWorkouts($data);
+        } catch(Throwable $e) {
+            throw $e;
+        }
+    }
+
 	public function store(array $data) {
 		try {
             return $this->repository->store($data);
