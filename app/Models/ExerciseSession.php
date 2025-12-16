@@ -26,10 +26,10 @@ class ExerciseSession extends Model
     ];
 
     public function workoutExercise() {
-        $this->belongsTo(WorkoutExercise::class, 'workout_exercise_id');
+        return $this->belongsTo(WorkoutExercise::class, 'workout_exercise_id');
     }
 
     public function workoutSession() {
-        $this->belongsTo(WorkoutSession::class, 'workout_session_id');
+        return $this->belongsTo(WorkoutSession::class, 'workout_session_id');
     }
 }

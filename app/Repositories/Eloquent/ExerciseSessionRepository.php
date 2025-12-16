@@ -1,21 +1,28 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Eloquent;
 
+use App\Models\ExerciseSession;
+use App\Repositories\Contracts\ExerciseSessionRepositoryInterface;
+use Illuminate\Support\Collection;
 use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
-//use Your Model
 
-/**
- * Class ExerciseSessionRepository.
- */
-class ExerciseSessionRepository extends BaseRepository
+class ExerciseSessionRepository extends BaseRepository implements ExerciseSessionRepositoryInterface
 {
-    /**
-     * @return string
-     *  Return the model
-     */
+
     public function model()
     {
-        //return YourModel::class;
+        return ExerciseSession::class;
+    }
+
+    public function index(array $data): Collection {
+        return ExerciseSession::query()
+            ->with(['workoutSession', 'workoutExercise'])
+            ->orderBy('id')
+            ->get();
+    }
+
+    public function store(array $data): ExerciseSession {
+        return ExerciseSession::create($data);
     }
 }

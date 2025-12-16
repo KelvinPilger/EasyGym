@@ -30,4 +30,5 @@ Route::middleware('auth:sanctum')->group(function () {
     require __DIR__.'/api/workout.php';
     require __DIR__.'/api/workout-session.php';
     require __DIR__.'/api/workout-exercise.php';
+    require __DIR__.'/api/exercise-session.php';
 });
