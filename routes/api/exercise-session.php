@@ -7,4 +7,6 @@ use App\Models\ExerciseSession;
 Route::prefix('exercise-session')->group(function () {
     Route::get('/', [ExerciseSessionController::class, 'index']);
     Route::post('/', [ExerciseSessionController::class, 'store']);
+    Route::put('/{id}', [ExerciseSessionController::class, 'update']);
+    Route::delete('/{id}', [ExerciseSessionController::class, 'delete']);
 });

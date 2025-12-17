@@ -40,4 +40,12 @@ class ExerciseSessionController extends AbstractController
     public function store(ExerciseSessionStoreRequest $request) {
         return parent::abstractStore($request);
     }
+
+    public function update(ExerciseSessionUpdateRequest $request) {
+        return parent::abstractUpdate($request);
+    }
+
+    public function delete(ExerciseSessionDeleteRequest $request) {
+        return parent::abstractDelete($request);
+    }
 }

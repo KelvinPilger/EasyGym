@@ -25,4 +25,15 @@ class ExerciseSessionRepository extends BaseRepository implements ExerciseSessio
     public function store(array $data): ExerciseSession {
         return ExerciseSession::create($data);
     }
+
+    public function update(array $data): ExerciseSession {
+        $exerciseSession = ExerciseSession::findOrFail($data['id']);
+        $exerciseSession->update($data);
+        return $exerciseSession;
+    }
+
+    public function deleteById($id): bool {
+        $exerciseSession = ExerciseSession::findOrFail($id);
+        return (bool) $exerciseSession->delete();
+    }
 }

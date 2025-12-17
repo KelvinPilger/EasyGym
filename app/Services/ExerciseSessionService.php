@@ -30,4 +30,25 @@ class ExerciseSessionService
             throw $e;
         }
     }
+
+    public function update(array $data): ExerciseSession {
+        try {
+            return $this->repository->update($data);
+        } catch(ModelNotFoundException $e) {
+            throw $e;
+        } catch(Throwable $e) {
+            throw $e;
+        }
+    }
+
+    public function delete(array $data): bool {
+        try {
+            $id = (int) $data['id'];
+            return $this->repository->deleteById($id);
+        } catch(ModelNotFoundException $e) {
+            throw $e;
+        } catch(Throwable $e) {
+            throw $e;
+        }
+    }
 }

@@ -9,4 +9,6 @@ interface ExerciseSessionRepositoryInterface
 {
     public function index(array $data): Collection;
     public function store(array $data): ExerciseSession;
+    public function update(array $data): ExerciseSession;
+    public function deleteById($id): bool;
 }
