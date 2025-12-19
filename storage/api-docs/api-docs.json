@@ -1,0 +1,67 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "EasyGym API",
+        "description": "API de gerenciamento de treinos, exercícios e análise física.",
+        "contact": {
+            "email": "kelvinpilgeer@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/equipment": {
+            "get": {
+                "tags": [
+                    "Equipamentos"
+                ],
+                "summary": "Lista todos os equipamentos",
+                "description": "Retorna a listagem de equipamentos cadastrados.",
+                "operationId": "5114786de5d68a78dba58c66ee639a87",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "Filtrar por ID do equipamento",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": "1"
+                        }
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Filtrar por nome do equipamento",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "Supino"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Equipamentos listados com sucesso"
+                    },
+                    "401": {
+                        "description": "Não autenticado"
+                    },
+                    "422": {
+                        "description": "Erro de validação"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Equipamentos",
+            "description": "Equipamentos"
+        }
+    ]
+}
