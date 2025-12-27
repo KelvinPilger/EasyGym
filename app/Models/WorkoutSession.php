@@ -22,6 +22,4 @@ class WorkoutSession extends Model
     public function exerciseSession() {
         return $this->hasMany(ExerciseSession::class, 'workout_session_id');
     }
-
-    public $timestamps = false;
 }
