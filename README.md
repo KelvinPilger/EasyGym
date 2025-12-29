@@ -1,59 +1,52 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## EasyGym API 🏋🏼‍♂️
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A EasyGym API é uma API REST desenvolvida para gerenciamento completo de academias, permitindo o controle de usuários, treinos, exercícios, equipamentos e sessões de treino, além do acompanhamento do desempenho físico dos alunos e geração de dietas/treinos via IA. **(em desenvolvimento)**.
 
-## About Laravel
+O projeto foi desenvolvido com foco em organização de domínio, boas práticas e escalabilidade, servindo tanto como base para aplicações reais quanto como projeto de estudo avançado.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Features Atuais 📓
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Autenticação via Laravel Sanctum **(Bearer Token)** 🔐
+- CRUD para as entidades relativas ao controle de treinos, usuários, equipamentos e afins. 
+- Gerenciamento dos treinos e exercícios. 🏋🏼‍♂️
+- Associação de exercícios as fichas de treino dos usuários. 📝
+- Controle de sessões de treino. 📲
+- Monitoramento de RPE *(Taxa de Percepção Subjetiva de Esforço)* e nível de dor durante os exercícios. 🥵
+- Rotas validadas por politicas de acesso de acordo com o tipo de usuário (Aluno, Instrutor ou Administrador). 🛡️
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Pré-Requisitos 🎯
 
-## Learning Laravel
+- Docker Desktop.
+- WSL ou ambiente baseado em Linux.
+- Github
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## Tecnologias usadas ⚙️
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- PHP 8.3
+- Laravel
+- Laravel Sail (Docker)
+- PostgreSQL
+- Laravel Sanctum
+- Visual Studio Code
+- Postman
+- Arquitetura baseada em Services e Repositories
 
-## Laravel Sponsors
+## Passo a passo 🧑🏻‍💻
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- O projeto pode ser clonado dentro de uma WSL, ou em um ambiente Linux. Instalar as dependencias do PHP, o Composer e rodar os comandos para gerar os arquivos **vendor** do Laravel.
 
-### Premium Partners
+- Dentro da WSL:
+    - *Instalar o PHP e Composer*
+        - sudo apt update && sudo apt upgrade -y
+        - sudo apt install -y php8.3
+        - sudo apt install -y composer
+        - Para clonar o projeto: git clone https://github.com/KelvinPilger/EasyGym.git
+    - *Instalar e inicializar o projeto (Laravel)*
+        - composer require laravel/sail --dev
+        - php artisan sail:install (Escolher apenas o PostgreSQL)
+        - Ajustar o .env para os dados do banco de dados.
+        - Inicializar o contâiner Docker acoplado do Laravel com o comando: **./vendor/bin/sail up**
+        - Ao inicializar, rodar o comando: **sail artisan migrate**, para rodar as migrations.
+        - Após rodar as migrations, rodar o comando: **sail artisan db:seed**, para realizar o seeding dos registros.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- *_Link da Collection do Postman para testar as rotas:_* https://drive.google.com/file/d/1jqLB7x8X2CZ3X-v7j4ePHlNTxQFB_Dpf/view?usp=sharing
