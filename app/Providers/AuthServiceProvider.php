@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Exercise;
 use App\Models\Workout;
 use App\Models\WorkoutSession;
+use App\Models\ExerciseSession;
 
 use App\Policies\EquipmentPolicy;
 use App\Policies\UserPolicy;
@@ -15,6 +16,7 @@ use App\Policies\ExercisePolicy;
 use App\Policies\WorkoutPolicy;
 use App\Policies\WorkoutSessionPolicy;
 use App\Policies\MuscleGroupPolicy;
+use App\Policies\ExerciseSessionPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -26,6 +28,7 @@ class AuthServiceProvider extends ServiceProvider
 		Exercise::class => ExercisePolicy::class,
 		Workout::class => WorkoutPolicy::class,
 		WorkoutSession::class => WorkoutSessionPolicy::class,
+        ExerciseSession::class => ExerciseSessionPolicy::class,
     ];
 
     public function boot(): void
